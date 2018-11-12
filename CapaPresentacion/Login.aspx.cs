@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CapaEntidades;
+using CapaLogicaNegocio;
 
 public partial class Login : System.Web.UI.Page
 {
@@ -14,15 +16,19 @@ public partial class Login : System.Web.UI.Page
 
     protected void btnIngresar_Click(object sender, EventArgs e)
     {
-        string user = txtusuario.Text;
-        string password = txtPassword.Text;
-        string userName = "adelgado";
-        string passName = "4ug02000";
+        // string user = txtusuario.Text;
+        // string password = txtPassword.Text;
+        // string userName = "adelgado";
+        // string passName = "4ug02000";
+        // 
+        // if (user.Equals(userName) && password.Equals(passName))
+        Empleado objEmpleado = EmpleadoLN.getInstance().AccesoDatos(txtusuario.Text, txtPassword.Text);
 
-        if (user.Equals(userName) && password.Equals(passName))
+        if (objEmpleado != null)
         {
             Response.Write("<script> alert ('Usuario Correcto'); </script>");
-        } else
+        }
+        else
         {
             Response.Write("<script> alert ('Usuario Incorrecto'); </script>");
         }
